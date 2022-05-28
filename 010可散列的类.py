@@ -1,30 +1,24 @@
 # 开发者 haotian
-# 开发时间: 2022/5/28 16:56
-
-
-'''
-repr() 返回开发者理解的对象的字符串表示形式 --- 带有类型？？
-str() 返回用户理解的的对象的字符串表示形式 --- 单纯值？？
-有什么不同啊？？
-bytes() 返回对象的字节序列表示形式
-'''
-# a = 'abc'
-# b = ['1', '2', '3']
-# print(repr(a), str(a), repr(b), str(b))
-
-
-from array import array
+# 开发时间: 2022/5/28 21:05
 import math
+from array import array
 
 
 class Vector2d:
-    typecode = 'd'
+    typcode = 'd'
 
     def __init__(self, x, y):
-        # self 代表类实例本身
-        self.x = float(x)
-        self.y = float(y)
-        print(self)
+        # 使用 两个前导下划线，把属性标记为私有
+        self.__x = float(x)
+        self.__y = float(y)
+
+    @property
+    def x(self):  # 读值的方法
+        return self.__x
+
+    @property
+    def y(self):  # 读值的方法
+        return self.__y
 
     def __iter__(self):
         return (i for i in (self.x, self.y))
@@ -53,4 +47,4 @@ class Vector2d:
 
 
 v_1 = Vector2d(1, 2)
-print(v_1)
+print(hash(v_1))
